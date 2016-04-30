@@ -9,5 +9,6 @@ Thumbs.db
 .idea/
 vagrant
 .vagrant
+.grunt
 
 dist

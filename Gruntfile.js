@@ -25,7 +25,7 @@ module.exports = function (grunt) {
             }
         },
 
-
+        clean: ['dist'],
 
         less: {
             development: {
@@ -77,18 +77,35 @@ module.exports = function (grunt) {
                     ]
                 }
             },
-        }
+        },
 
+        copy: {
+            main: {
+                files: [
+                    { expand: true, src: ['locales/**', 'img/**', 'exemples/**'], dest: 'dist/' }
+                ]
+            }
+        },
+
+        'gh-pages': {
+            options: {
+                base: 'dist'
+            },
+            src: ['**']
+        }
 
     });
 
 
+    grunt.loadNpmTasks('grunt-contrib-clean');
     grunt.loadNpmTasks('grunt-contrib-watch');
     grunt.loadNpmTasks('grunt-contrib-uglify');
     grunt.loadNpmTasks('grunt-contrib-less');
-    //grunt.loadNpmTasks('grunt-contrib-concat');
+    grunt.loadNpmTasks('grunt-gh-pages');
+    grunt.loadNpmTasks('grunt-contrib-copy');
 
     // Default task(s).
     grunt.registerTask('default', ['watch']);
+    grunt.registerTask('release-gh', ['clean', 'less', 'uglify', 'copy', 'gh-pages']);
 
 };
