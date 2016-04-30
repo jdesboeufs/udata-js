@@ -30,11 +30,11 @@ module.exports = function (grunt) {
         less: {
             development: {
                 options: {
-                    paths: ["less"]
+                    paths: ["less"],
+                    sourceMap: true
                 },
                 files: {
                     "dist/udata.css": "less/main.less",
-                    sourceMap: true
                 }
             },
             production: {
